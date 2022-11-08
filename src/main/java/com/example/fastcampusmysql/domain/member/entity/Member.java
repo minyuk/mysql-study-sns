@@ -1,5 +1,6 @@
 package com.example.fastcampusmysql.domain.member.entity;
 
+import com.example.fastcampusmysql.domain.member.dto.MemberDto;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.util.Assert;
@@ -36,5 +37,14 @@ public class Member {
 
     void validateNickname(String nickname) {
         Assert.isTrue(nickname.length() <= NAME_MAX_LENGTH, "최대 길이를 초과했습니다.");
+    }
+
+    public MemberDto toDto() {
+        return MemberDto.builder()
+                .id(id)
+                .email(email)
+                .birthday(birthday)
+                .nickname(nickname)
+                .build();
     }
 }
