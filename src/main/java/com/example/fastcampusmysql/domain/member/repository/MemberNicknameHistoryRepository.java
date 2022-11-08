@@ -52,7 +52,7 @@ public class MemberNicknameHistoryRepository {
         long id = simpleJdbcInsert.executeAndReturnKey(params).longValue();
 
         return MemberNicknameHistory.builder()
-                .id(history.getId())
+                .id(id)
                 .memberId(history.getMemberId())
                 .nickname(history.getNickname())
                 .createdAt(history.getCreatedAt())
