@@ -31,6 +31,15 @@ public class MemberRepository {
             .createdAt(resultSet.getObject("createdAt", LocalDateTime.class))
             .build();
 
+    public List<Member> findAllByIdIn(List<Long> ids) {
+        if(ids.isEmpty()) return List.of();
+
+        String sql = String.format("SELECT * FROM %s WHERE id in (:ids)", TABLE);
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("ids", ids);
+
+        return namedParameterJdbcTemplate.query(sql, params, rowMapper);
+    }
+
     public Optional<Member> findById(Long id) {
         /*
             select *
