@@ -8,6 +8,7 @@ import com.example.fastcampusmysql.domain.member.repository.MemberNicknameHistor
 import com.example.fastcampusmysql.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +18,7 @@ public class MemberWriterService {
 
     private final MemberNicknameHistoryRepository memberNicknameHistoryRepository;
 
+    @Transactional
     public MemberDto create(RegisterMemberCommand command) {
         /*
             목표 - 회원정보(이메일, 닉네임, 생년월일)를 등록한다.
@@ -33,8 +35,7 @@ public class MemberWriterService {
 
         Member saveMember = memberRepository.save(member);
 
-        // TODO: 2022/12/09 null
-//        saveMemberNicknameHistory(member);
+        saveMemberNicknameHistory(saveMember);
 
         return saveMember.toDto();
     }
