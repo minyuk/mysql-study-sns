@@ -32,7 +32,9 @@ public class MemberWriterService {
                 .build();
 
         Member saveMember = memberRepository.save(member);
-        saveMemberNicknameHistory(member);
+
+        // TODO: 2022/12/09 null
+//        saveMemberNicknameHistory(member);
 
         return saveMember.toDto();
     }
