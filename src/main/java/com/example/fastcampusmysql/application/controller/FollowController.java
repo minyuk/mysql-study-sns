@@ -11,7 +11,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("follow")
+@RequestMapping("follows")
 public class FollowController {
 
     private final CreateFollowMemberUsecase createFollowMemberUsecase;
